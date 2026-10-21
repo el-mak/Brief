@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creative Brief / Συνέδρια – Boussias Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #3b7dc4;
+    --dot: #5b85c6;
+    --accent: #c0835a;
+    --grey-bg: #e6e7e9;
+    --field-grey: #e8e7e5;
+    --text: #111;
+    --muted: #8a8a8a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #d9dadc;
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+  }
+  .page {
+    background: #fff;
+    max-width: 952px;
+    margin: 24px auto;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0,0,0,.12);
+    padding-bottom: 70px;
+  }
+  .footer {
+    position: absolute; left: 88px; right: 88px; bottom: 24px;
+    display: flex; justify-content: space-between;
+    font-size: 13px; color: var(--muted);
+  }
+  .footer .num { font-weight: 600; }
+
+  /* ---------- Cover header ---------- */
+  .cover-head { text-align: center; padding: 80px 20px 70px; }
+  .logo { display: inline-flex; align-items: stretch; gap: 26px; text-align: left; }
+  .logo .bar { width: 14px; background: var(--blue); }
+  .logo .b { font-weight: 800; font-size: 76px; line-height: .95; letter-spacing: -1px; }
+  .logo .e { font-weight: 300; font-size: 82px; line-height: 1; }
+  .cover-head h1 { font-weight: 300; font-size: 40px; margin: 34px 0 10px; }
+  .cover-head .note { font-style: italic; font-size: 13px; margin: 0; }
+
+  /* ---------- Small header ---------- */
+  .small-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 80px 88px 60px;
+  }
+  .logo-sm { display: flex; gap: 10px; }
+  .logo-sm .bar { width: 5px; background: var(--blue); }
+  .logo-sm .b { font-weight: 800; font-size: 26px; line-height: 1; }
+  .logo-sm .e { font-weight: 300; font-size: 30px; line-height: 1; }
+  .small-head .right { text-align: right; }
+  .small-head .right .t { font-weight: 300; font-size: 24px; }
+  .small-head .right .s { font-style: italic; font-weight: 300; color: var(--blue); font-size: 19px; margin-top: 10px; }
+
+  /* ---------- Sections ---------- */
+  .grey-section { background: var(--grey-bg); padding: 40px 88px 46px; }
+  .section-title {
+    font-style: italic; font-weight: 300; color: var(--dot); font-size: 21px;
+    padding: 0 0 16px 48px; border-bottom: 1px solid #222; margin: 0 0 28px;
+  }
+  .content { padding: 0 88px; }
+  .divider { border-top: 1px solid #222; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 270px 1fr 24px;
+    column-gap: 16px;
+    align-items: start;
+    margin-bottom: 26px;
+  }
+  .row > label, .row > .label {
+    text-align: right; font-weight: 600; font-size: 15px; padding-top: 8px; line-height: 1.4;
+  }
+  .req { width: 14px; height: 14px; border-radius: 50%; background: var(--dot); margin-top: 8px; }
+  .hint { font-style: italic; font-size: 11.5px; margin: 6px 0 0; line-height: 1.4; }
+
+  input[type=text], input[type=date], textarea {
+    width: 100%; border: none; background: #fff; font: inherit; font-size: 15px;
+    padding: 10px 12px; outline: none;
+  }
+  input[type=text]:focus, input[type=date]:focus, textarea:focus { box-shadow: inset 0 0 0 2px var(--blue); }
+  input.single { height: 38px; }
+  textarea { resize: vertical; display: block; }
+  textarea.tall { height: 72px; }
+  .content textarea { background: var(--field-grey); }
+  .content textarea.xl { height: 354px; }
+  .content textarea.lg { height: 188px; }
+  .content textarea.md { height: 122px; }
+  .content textarea.sm { height: 97px; }
+  .content textarea.cm { height: 196px; }
+
+  /* ---------- Checkboxes / radios ---------- */
+  .choice { display: flex; align-items: center; gap: 16px; font-weight: 600; font-size: 15px; cursor: pointer; line-height: 1.3; }
+  .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .box {
+    flex: 0 0 24px; width: 24px; height: 24px; border: 2px solid var(--accent);
+    display: grid; place-items: center; background: #fff;
+  }
+  .box::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: #000; transform: scale(0); transition: transform .12s; }
+  .choice input:checked + .box::after { transform: scale(1); }
+  .choice input:focus-visible + .box { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+  .mode-options { display: flex; justify-content: space-between; padding-top: 4px; }
+  .age-grid { display: grid; grid-template-columns: 1fr 1fr; row-gap: 18px; column-gap: 20px; }
+
+  .tone-grid { display: grid; grid-template-columns: 178px 140px; width: 318px; }
+  .tone-grid .choice { padding: 12px 0; }
+  .tone-grid .sep { grid-column: 2 / 3; border-top: 1px solid #222; }
+  .tone-grid .sep.full { grid-column: 1 / 3; border: none; }
+
+  .emo-grid { display: grid; grid-template-columns: repeat(3, 1fr); row-gap: 14px; }
+  .emo-warn { color: #b0461f; font-size: 12px; margin-top: 6px; min-height: 16px; }
+
+  .legend { color: var(--dot); font-size: 13px; display: flex; align-items: center; gap: 8px; margin: 50px 0 22px 286px; }
+  .legend .req { margin: 0; width: 9px; height: 9px; }
+  .buttons { display: flex; justify-content: space-between; margin-left: 286px; }
+  .buttons button {
+    width: 218px; height: 38px; border: none; background: var(--accent); color: #fff;
+    font: inherit; font-weight: 800; font-size: 17px; cursor: pointer;
+  }
+  .buttons button:hover { filter: brightness(.93); }
+  .invalid { box-shadow: inset 0 0 0 2px #c0392b !important; }
+  .group-invalid { outline: 2px solid #c0392b; outline-offset: 6px; }
+  .msg { margin: 18px 0 0 286px; font-size: 14px; min-height: 18px; }
+  .msg.err { color: #c0392b; } .msg.ok { color: #2e7d32; }
+
+  @media (max-width: 760px) {
+    .page { margin: 0; box-shadow: none; }
+    .grey-section, .content, .small-head { padding-left: 16px; padding-right: 16px; }
+    .small-head { flex-direction: column; gap: 16px; padding-top: 40px; padding-bottom: 30px; }
+    .small-head .right { text-align: left; }
+    .footer { left: 16px; right: 16px; }
+    .logo .b { font-size: 44px; } .logo .e { font-size: 48px; } .logo .bar { width: 9px; }
+    .cover-head h1 { font-size: 28px; }
+    .row { grid-template-columns: 1fr 16px; }
+    .row > label, .row > .label { grid-column: 1 / 3; text-align: left; padding: 0 0 8px; }
+    .section-title { padding-left: 0; }
+    .mode-options { flex-wrap: wrap; gap: 14px 24px; justify-content: flex-start; }
+    .emo-grid { grid-template-columns: 1fr 1fr; }
+    .legend, .buttons, .msg { margin-left: 0; }
+    .buttons { gap: 12px; } .buttons button { width: 50%; font-size: 15px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; }
+    .msg { display: none; }
+  }
+</style>
+</head>
+<body>
+<form id="brief" novalidate>
+
+<!-- ================= PAGE 1 ================= -->
+<section class="page">
+  <div class="cover-head">
+    <div class="logo">
+      <div class="bar"></div>
+      <div><div class="b">BOUSSIAS</div><div class="e">events</div></div>
+    </div>
+    <h1>Creative Brief / Συνέδρια</h1>
+    <p class="note">Παράδοση σε 5 εργάσιμες ημέρες από την λήψη του συμπληρωμένου Brief</p>
+  </div>
+
+  <div class="grey-section">
+    <h2 class="section-title">Βασικές Πληροφορίες</h2>
+
+    <div class="row">
+      <label for="title">Τίτλος</label>
+      <div>
+        <textarea id="title" name="title" class="tall" required></textarea>
+        <p class="hint">Ο πλήρης τίτλος συνεδρίου μαζί με αριθμητικό εφόσον υπάρχει</p>
+      </div>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="row">
+      <label for="tagline">Tagline</label>
+      <textarea id="tagline" name="tagline" class="tall" required></textarea>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="row">
+      <label for="publication">Official Publication(s)</label>
+      <input type="text" class="single" id="publication" name="publication" required>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="row">
+      <label for="producer">Υπεύθυνος Παραγωγός</label>
+      <input type="text" class="single" id="producer" name="producer" required>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="row">
+      <label for="eventDate">Ημερομηνία Διεξαγωγής</label>
+      <input type="text" class="single" id="eventDate" name="eventDate" required>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="row">
+      <div class="label">Τρόπος διεξαγωγής</div>
+      <div class="mode-options" data-group="mode">
+        <label class="choice"><input type="radio" name="mode" value="Digital" required><span class="box"></span>Digital</label>
+        <label class="choice"><input type="radio" name="mode" value="Physical" checked><span class="box"></span>Physical</label>
+        <label class="choice"><input type="radio" name="mode" value="Hybrid"><span class="box"></span>Hybrid</label>
+      </div>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="row">
+      <label for="venue">Venue</label>
+      <input type="text" class="single" id="venue" name="venue">
+      <span></span>
+    </div>
+
+    <div class="row" style="margin-bottom:0">
+      <label for="launchDate">Ημερομηνία Λανσαρίσματος</label>
+      <input type="text" class="single" id="launchDate" name="launchDate" required>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+  </div>
+
+  <div class="footer"><span>V 2.0</span><span class="num">1/3</span></div>
+</section>
+
+<!-- ================= PAGE 2 ================= -->
+<section class="page">
+  <header class="small-head">
+    <div class="logo-sm"><div class="bar"></div><div><div class="b">BOUSSIAS</div><div class="e">events</div></div></div>
+    <div class="right"><div class="t">Creative Brief / Συνέδρια</div><div class="s">Briefing</div></div>
+  </header>
+
+  <div class="content">
+    <div class="divider" style="margin-bottom:20px"></div>
+
+    <div class="row">
+      <label for="idea">Κεντρική ιδέα / Στόχος</label>
+      <div>
+        <textarea id="idea" name="idea" class="xl" required></textarea>
+        <p class="hint">Αναπτύξτε μας με απλά αλλά περιεκτικά λόγια (όπως θα τον περιγράφατε σε κάποιον που δεν είναι γνώστης του αντικειμένου) τι πραγματεύεται το συνέδριο</p>
+      </div>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="row">
+      <label for="audience">Σε ποιους απευθύνεται</label>
+      <div>
+        <textarea id="audience" name="audience" class="lg" required></textarea>
+        <p class="hint">Αναφέρετε σε ποιες κατηγορίες επαγγελμάτων και ειδικοτήτων απευθύνεται το συνέδριο</p>
+      </div>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="divider" style="margin-bottom:22px"></div>
+
+    <div class="row">
+      <div class="label">Η πιο ενδεικτική ηλικιακή κατηγορία για τη συγκεκριμένη αγορά είναι</div>
+      <div class="age-grid" data-group="age">
+        <label class="choice"><input type="radio" name="age" value="18-35" required><span class="box"></span>18-35</label>
+        <label class="choice"><input type="radio" name="age" value="35-50"><span class="box"></span>35-50</label>
+        <label class="choice"><input type="radio" name="age" value="50-άνω"><span class="box"></span>50-άνω</label>
+        <label class="choice"><input type="radio" name="age" value="Χωρίς ενδεικτική ηλικιακή κατηγορία" checked><span class="box"></span>Δεν υπάρχει ενδεικτική ηλικιακή κατηγορία για τη συγκεκριμένη αγορά</label>
+      </div>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="divider" style="margin-bottom:20px"></div>
+
+    <div class="row">
+      <label for="keywords">Λέξεις-κλειδιά / keywords</label>
+      <div>
+        <textarea id="keywords" name="keywords" class="md" required></textarea>
+        <p class="hint">Γράψτε τις 5 σημαντικότερες λέξεις-κλειδιά σε σχέση με τη θεματολογία του συνεδρίου</p>
+      </div>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+  </div>
+
+  <div class="footer"><span>V 2.0</span><span class="num">2/3</span></div>
+</section>
+
+<!-- ================= PAGE 3 ================= -->
+<section class="page">
+  <header class="small-head">
+    <div class="logo-sm"><div class="bar"></div><div><div class="b">BOUSSIAS</div><div class="e">events</div></div></div>
+    <div class="right"><div class="t">Creative Brief / Συνέδρια</div><div class="s">Briefing</div></div>
+  </header>
+
+  <div class="content">
+    <div class="divider" style="margin-bottom:8px"></div>
+
+    <div class="row" style="margin-bottom:8px">
+      <div class="label" style="padding-top:20px">Ύφος επικοινωνίας</div>
+      <div class="tone-grid" data-group="tone">
+        <label class="choice"><input type="radio" name="tone1" value="Δυναμικό"><span class="box"></span>Δυναμικό</label>
+        <label class="choice"><input type="radio" name="tone1" value="Ήρεμο" checked><span class="box"></span>Ήρεμο</label>
+        <span class="sep full"></span><span class="sep"></span>
+        <label class="choice"><input type="radio" name="tone2" value="Μοντέρνο"><span class="box"></span>Μοντέρνο</label>
+        <label class="choice"><input type="radio" name="tone2" value="Κλασσικό" checked><span class="box"></span>Κλασσικό</label>
+        <span class="sep full"></span><span class="sep"></span>
+        <label class="choice"><input type="radio" name="tone3" value="Σοβαρό"><span class="box"></span>Σοβαρό</label>
+        <label class="choice"><input type="radio" name="tone3" value="Πνευματώδες" checked><span class="box"></span>Πνευματώδες</label>
+      </div>
+      <span class="req" title="Υποχρεωτικό" style="margin-top:20px"></span>
+    </div>
+
+    <div class="divider" style="margin-bottom:22px"></div>
+
+    <div class="row">
+      <div class="label">Ποια είναι τα 4 κυρίαρχα συναισθήματα που θέλετε να δημιουργηθούν στους συμμετέχοντες</div>
+      <div>
+        <div class="emo-grid" id="emotions" data-group="emotions">
+          <label class="choice"><input type="checkbox" name="emotions" value="Ενθουσιασμός"><span class="box"></span>Ενθουσιασμός</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Ασφάλεια"><span class="box"></span>Ασφάλεια</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Εμπιστοσύνη"><span class="box"></span>Εμπιστοσύνη</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Εγρήγορση"><span class="box"></span>Εγρήγορση</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Οικειότητα"><span class="box"></span>Οικειότητα</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Υπερηφάνεια"><span class="box"></span>Υπερηφάνεια</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Ικανοποίηση"><span class="box"></span>Ικανοποίηση</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Έκπληξη"><span class="box"></span>Έκπληξη</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Περιέργεια"><span class="box"></span>Περιέργεια</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Χαρά"><span class="box"></span>Χαρά</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Ηρεμία"><span class="box"></span>Ηρεμία</label>
+          <label class="choice"><input type="checkbox" name="emotions" value="Προσμονή"><span class="box"></span>Προσμονή</label>
+        </div>
+        <p class="hint" style="margin-top:12px">Παρακαλώ επιλέξτε μέχρι 4</p>
+        <div class="emo-warn" id="emoWarn" aria-live="polite"></div>
+      </div>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="divider" style="margin-bottom:22px"></div>
+
+    <div class="row">
+      <label for="comments">Σχόλια</label>
+      <div>
+        <textarea id="comments" name="comments" class="cm"></textarea>
+        <p class="hint">Επιπλέον σχόλια ή πληροφορίες που θα θέλατε να γνωρίζουμε</p>
+      </div>
+      <span></span>
+    </div>
+
+    <div class="row">
+      <label for="references">Αναφορές</label>
+      <div>
+        <textarea id="references" name="references" class="sm"></textarea>
+        <p class="hint">Παράθεση link από αντίστοιχα συνέδρια της Ελλάδας ή του εξωτερικού</p>
+      </div>
+      <span></span>
+    </div>
+
+    <div class="divider" style="margin-bottom:22px"></div>
+
+    <div class="row">
+      <label for="sendTo">Αποστολή στο email</label>
+      <div>
+        <input type="text" class="single" id="sendTo" name="sendTo" inputmode="email" autocomplete="email" placeholder="π.χ. creative@boussias.com" style="background:var(--field-grey)" required>
+        <p class="hint">Μπορείτε να βάλετε πολλά email χωρισμένα με κόμμα</p>
+      </div>
+      <span class="req" title="Υποχρεωτικό"></span>
+    </div>
+
+    <div class="legend">Όπου <span class="req"></span> Υποχρεωτικά Πεδία Συμπλήρωσης</div>
+
+    <div class="buttons">
+      <button type="button" id="clearBtn">CLEAR FORM</button>
+      <button type="submit">ΑΠΟΣΤΟΛΗ</button>
+    </div>
+    <div class="msg" id="msg" aria-live="polite"></div>
+  </div>
+
+  <div class="footer"><span>V 2.0</span><span class="num">3/3</span></div>
+</section>
+
+</form>
+
+<script>
+(function () {
+  const form = document.getElementById('brief');
+  const msg = document.getElementById('msg');
+  const emoWarn = document.getElementById('emoWarn');
+  const emoBoxes = form.querySelectorAll('input[name="emotions"]');
+
+  // Μέχρι 4 συναισθήματα
+  emoBoxes.forEach(cb => cb.addEventListener('change', () => {
+    const checked = form.querySelectorAll('input[name="emotions"]:checked').length;
+    if (checked > 4) {
+      cb.checked = false;
+      emoWarn.textContent = 'Μπορείτε να επιλέξετε έως 4 συναισθήματα.';
+    } else {
+      emoWarn.textContent = '';
+    }
+  }));
+
+  // Clear form
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    if (!confirm('Να καθαριστούν όλα τα πεδία της φόρμας;')) return;
+    form.querySelectorAll('input[type=text], textarea').forEach(el => el.value = '');
+    form.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(el => el.checked = false);
+    form.querySelectorAll('.invalid, .group-invalid').forEach(el => el.classList.remove('invalid', 'group-invalid'));
+    emoWarn.textContent = ''; msg.textContent = ''; msg.className = 'msg';
+  });
+
+  // Αποστολή: έλεγχος υποχρεωτικών πεδίων
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let firstBad = null;
+    form.querySelectorAll('.invalid, .group-invalid').forEach(el => el.classList.remove('invalid', 'group-invalid'));
+
+    form.querySelectorAll('input[type=text][required], textarea[required]').forEach(el => {
+      if (!el.value.trim()) { el.classList.add('invalid'); firstBad = firstBad || el; }
+    });
+
+    const groupChecks = [
+      { group: 'mode', ok: () => form.querySelector('input[name="mode"]:checked') },
+      { group: 'age', ok: () => form.querySelector('input[name="age"]:checked') },
+      { group: 'tone', ok: () => ['tone1','tone2','tone3'].every(n => form.querySelector(`input[name="${n}"]:checked`)) },
+      { group: 'emotions', ok: () => form.querySelector('input[name="emotions"]:checked') }
+    ];
+    groupChecks.forEach(g => {
+      if (!g.ok()) {
+        const el = form.querySelector(`[data-group="${g.group}"]`);
+        el.classList.add('group-invalid'); firstBad = firstBad || el;
+      }
+    });
+
+    if (firstBad) {
+      msg.className = 'msg err';
+      msg.textContent = 'Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά πεδία (σημειώνονται με κόκκινο).';
+      firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Συγκέντρωση δεδομένων — εδώ μπορεί να συνδεθεί endpoint / email
+    const data = {};
+    new FormData(form).forEach((v, k) => {
+      if (data[k]) data[k] = [].concat(data[k], v); else data[k] = v;
+    });
+    console.log('Creative Brief:', data);
+    msg.className = 'msg ok';
+    msg.textContent = 'Η φόρμα είναι πλήρης και έτοιμη για αποστολή.';
+  });
+})();
+</script>
+</body>
+</html>
